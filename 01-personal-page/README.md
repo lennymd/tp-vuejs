@@ -18,7 +18,7 @@ You can find a video of me doing this assignment here: [https://youtu.be/Em_oKxq
 
 - Run the project and confirm the web app loads correctly in the browser
 
-**Q2.1:** _What command do we use to run the project locally?_
+**Q1:** _What command do we use to run the project locally?_
 
 ---
 
@@ -35,9 +35,9 @@ You can find a video of me doing this assignment here: [https://youtu.be/Em_oKxq
   <style scoped></style>
   ```
 
-**Q2.2:** _Where does HTML go in a SFC: `script`, `template`, or `style`?_
+**Q2:** _Where does HTML go in a SFC: `script`, `template`, or `style`?_
 
-**Q2.3:** _What kind of code goes in the other two blocks of a SFC file?_
+**Q3:** _What kind of code goes in the other two blocks of a SFC file?_
 
 - Inside your `<template></template>` add a `<header></header>` html element. You can read more about the header element here: [https://developer.mozilla.org/fr/docs/Web/HTML/Reference/Elements/header](https://developer.mozilla.org/fr/docs/Web/HTML/Reference/Elements/header)
 
@@ -72,7 +72,7 @@ You can find a video of me doing this assignment here: [https://youtu.be/Em_oKxq
 - Find and place a photo in the `public/` folder.
 - Go back to the `img` element in the template block and update the `src` attribute so the image loads from your public folder.
 
-**Q2.4:** _Where else can we load an image file from in a Vue app?_
+**Q4:** _Where else can we load an image file from in a Vue app?_
 
 - In your `<style scoped></style>` block, add CSS to make your image exactly 300px wide.
 
@@ -147,7 +147,7 @@ For this part, you'll probably need to look at documentation for CSS: [https://d
   1. Change the color of your email link
   1. Give your footer a different background color than the rest of the page.
 
-**Q2.6:** _Why do we have two different places for CSS in our project: the main.css and the SFC style block? What kind of CSS goes in each place?_
+**Q5:** _Why do we have two different places for CSS in our project: the main.css and the SFC style block? What kind of CSS goes in each place?_
 
 - In your Main component add the following to get the photo and the div to show up next to each other:
 
@@ -181,7 +181,7 @@ import { ref } from 'vue';
 - In the Footer component:
   1. Make the copyright year a reactive variable. Change the value to 2026.
 
-**Q2.7:** _Why does the UI update when data changes?_
+**Q6:** _Why does the UI update when data changes?_
 
 ---
 
