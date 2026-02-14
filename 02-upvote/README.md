@@ -2,7 +2,7 @@
 
 ## Goal
 
-Create an app where we can vote on posts. The more votes a post has, the higher the post will be on the page. This project is based on one of the exercises in [Fullstack Vue](https://www.newline.co/vue)
+Create an app where we can vote on posts. The more votes a post has, the higher the post will be on the page. This project is based on one of the exercises in [Fullstack Vue](https://www.newline.co/vue).
 
 You can find a video of me doing this assignment here: **✨TBD✨**
 
@@ -10,15 +10,17 @@ You can find a video of me doing this assignment here: **✨TBD✨**
 
 ## Part 1 - Project Setup
 
-Create a new vue project named: `upvote`
+Create a new vue project named: `upvote`. Don't select any of the additional or experimental features, but select `Yes` when asked "Skip all example code and start with a blank Vue project?"
 
 ```bash
 npm create vue@latest
 ```
 
-- Run the project and confirm the web app loads correctly in the browser. Close the test version of the project when you see it working.
+Run the project and confirm the web app loads correctly in the browser. Close the test version of the project when you see it working.
 
-- Then, open the project in the editor. Create an `assets` and a `components` folder inside of `src` folder
+Then, open the project in your code editor.
+
+- Create an `assets` and a `components` folder inside of `src` folder
 
 - Clean `App.vue`. Remove the existing HTML and add a heading with the title Upvote.
 
@@ -26,88 +28,106 @@ npm create vue@latest
   <h1>Upvote v2</h1>
   ```
 
+Now test your app to make sure the new title is visible. Run `npm run dev` in a terminal and keep that terminal open. As you complete the next parts, check back to make sure you see the app developing.
+
 ---
 
 ## Part 2 - Add Main-level css
 
-In this part we add some general CSS for our app.
+In this part we add some general CSS for our app. Create a `main.css` file in the `/assets` folder. Add the following CSS to it:
 
-- Create a `main.css` file in the `/assets` folder. Add the following CSS to it:
+```css
+/* Add a Google Font called Inter */
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
-  ```css
-  @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+/* Reset some general styling for the page */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+/* Use the Inter font */
+body {
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+}
 
-  body {
-    font-family: 'Inter', sans-serif;
-    font-size: 18px;
-  }
+/* Center your app on the page */
+div#app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+}
+```
 
-  div#app {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
-    margin: 0 auto;
-  }
-  ```
+Finally, import your css file in the `main.js`.
+
+```js
+import "./assets/main.css";
+```
+
+Check out how the app is in the browser. The heading should now be centered and the font should have changed from something serif to now Inter.
 
 ---
 
 ## Part 3 - Create Post component
 
-- Create a component called `Post` for this app.
+The Post is the core of our app. Let's build the most basic version of the component for our app.
 
-- Inside the template block, add the following for our post:
+Create a component called `Post` for this app. Inside the template block, add the following for our post:
 
-  ```html
-  <article class="post">
-    <header class="post-header"><strong class="author"> BoyNamedSue </strong></header>
-    <section class="post-content">
-      <h2 class="title">A Post named Hi</h2>
-      <p class="description">This describes the entire content of the post.</p>
-    </section>
-    <footer class="post-footer">
-      <span class="count">42</span>
-      <span class="vote">⬆️</span>
-    </footer>
-  </article>
-  ```
+```html
+<article class="post">
+  <header class="post-header"><strong class="author"> BoyNamedSue </strong></header>
+  <section class="post-content">
+    <h2 class="title">A Post named Hi</h2>
+    <p class="description">This describes the entire content of the post.</p>
+  </section>
+  <footer class="post-footer">
+    <span class="count">42</span>
+    <span class="vote">⬆️</span>
+  </footer>
+</article>
+```
 
-- Import and render this component in `App.vue`.
+Import and render this component in `App.vue`. Save your files and then view the app. You should see all the info we're using for posts: some author (BoyNamedSue), a title for the post (A post named Hi), some text or description for the post (This describes the entire content of the post.), as well as some arbitraty number that is how many votes this post has (42), and an arrow that we would use to upvote the specific post (⬆️).
+
+In the next part we will make it look a little better.
 
 ---
 
 ## Part 4 - Styling the post Component
 
-- Add some style to our component.
+Let's add some style to the Post component.
 
-  ```css
-  article {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 16px;
-    max-width: 400px;
-    margin: 16px auto;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: stretch;
-  }
+```css
+/* Turn the post into a card with a border, some radius, and spacing so it looks neater. */
+article {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  max-width: 400px;
+  margin: 16px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: stretch;
+}
 
-  footer.post-footer {
-    display: flex;
-    justify-content: space-between;
-    gap: 8px;
-    font-size: 1.2em;
-  }
-  ```
+/* Organize the button and the vote count so they're not stuck together */
+footer.post-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 1.2em;
+}
+```
+
+Make sure to save your changes and view the app in the browser.
 
 ---
 
@@ -204,10 +224,10 @@ Now we turn to App.vue to pass data to the new version of the Post component.
   ```js
   const aPost = {
     id: 1,
-    title: 'A Post named Hi',
-    description: 'This describes the entire content of the post.',
+    title: "A Post named Hi",
+    description: "This describes the entire content of the post.",
     votes: 42,
-    author: 'BoyNamedSue',
+    author: "BoyNamedSue",
   };
   ```
 
@@ -258,143 +278,143 @@ I have a sample of posts. Inside your `/src` folder make a file called `seed.js`
 export const posts = [
   {
     id: 1,
-    title: 'V4 at the new gym feels sandbagged',
-    description: 'Anyone else think the setters went a little wild this week?',
+    title: "V4 at the new gym feels sandbagged",
+    description: "Anyone else think the setters went a little wild this week?",
     votes: 18,
-    author: 'Alex Martin',
+    author: "Alex Martin",
   },
   {
     id: 2,
-    title: 'How often do you train finger strength?',
-    description: 'Trying to balance board work with actual climbing.',
+    title: "How often do you train finger strength?",
+    description: "Trying to balance board work with actual climbing.",
     votes: 12,
-    author: 'Sophie Nguyen',
+    author: "Sophie Nguyen",
   },
   {
     id: 3,
-    title: 'Tips for committing to dynos',
-    description: 'I hesitate every time and miss the move.',
+    title: "Tips for committing to dynos",
+    description: "I hesitate every time and miss the move.",
     votes: 25,
-    author: 'Lucas Bernard',
+    author: "Lucas Bernard",
   },
   {
     id: 4,
-    title: 'Chalk preference: loose or liquid?',
-    description: 'My gym banned loose chalk and I’m not convinced.',
+    title: "Chalk preference: loose or liquid?",
+    description: "My gym banned loose chalk and I’m not convinced.",
     votes: 7,
-    author: 'Emily Carter',
+    author: "Emily Carter",
   },
   {
     id: 5,
-    title: 'Rest days feel harder than training days',
-    description: 'Anyone else feel guilty not climbing?',
+    title: "Rest days feel harder than training days",
+    description: "Anyone else feel guilty not climbing?",
     votes: 15,
-    author: 'Daniel Lopez',
+    author: "Daniel Lopez",
   },
   {
     id: 6,
-    title: 'Best shoes for steep bouldering?',
-    description: 'Looking for something aggressive but still wearable.',
+    title: "Best shoes for steep bouldering?",
+    description: "Looking for something aggressive but still wearable.",
     votes: 22,
-    author: 'Maya Patel',
+    author: "Maya Patel",
   },
   {
     id: 7,
-    title: 'How long did it take you to send your first V6?',
-    description: 'Curious what progression looks like for most people.',
+    title: "How long did it take you to send your first V6?",
+    description: "Curious what progression looks like for most people.",
     votes: 30,
-    author: 'Thomas Wilson',
+    author: "Thomas Wilson",
   },
   {
     id: 8,
-    title: 'Campus board: useful or overrated?',
-    description: 'Thinking about adding it to my weekly routine.',
+    title: "Campus board: useful or overrated?",
+    description: "Thinking about adding it to my weekly routine.",
     votes: 9,
-    author: 'Hannah Fischer',
+    author: "Hannah Fischer",
   },
   {
     id: 9,
-    title: 'Favorite warm-up sequences',
-    description: 'Trying to avoid tweaky fingers this season.',
+    title: "Favorite warm-up sequences",
+    description: "Trying to avoid tweaky fingers this season.",
     votes: 14,
-    author: 'Ryan O’Connor',
+    author: "Ryan O’Connor",
   },
   {
     id: 10,
-    title: 'Outdoor bouldering alone?',
-    description: 'Safe enough or generally a bad idea?',
+    title: "Outdoor bouldering alone?",
+    description: "Safe enough or generally a bad idea?",
     votes: 5,
-    author: 'Laura Kim',
+    author: "Laura Kim",
   },
   {
     id: 11,
-    title: 'Slab problems terrify me',
-    description: 'Any mental tricks for trusting feet?',
+    title: "Slab problems terrify me",
+    description: "Any mental tricks for trusting feet?",
     votes: 19,
-    author: 'Ben Rossi',
+    author: "Ben Rossi",
   },
   {
     id: 12,
-    title: 'Do grades feel inconsistent between gyms?',
-    description: 'My V5 here feels like a V3 somewhere else.',
+    title: "Do grades feel inconsistent between gyms?",
+    description: "My V5 here feels like a V3 somewhere else.",
     votes: 27,
-    author: 'Claire Dubois',
+    author: "Claire Dubois",
   },
   {
     id: 13,
-    title: 'How often do you resole shoes?',
-    description: 'Trying to keep my favorites alive longer.',
+    title: "How often do you resole shoes?",
+    description: "Trying to keep my favorites alive longer.",
     votes: 11,
-    author: 'Julien Moreau',
+    author: "Julien Moreau",
   },
   {
     id: 14,
-    title: 'Training endurance for long boulders',
-    description: 'Pump hits halfway through and ruins attempts.',
+    title: "Training endurance for long boulders",
+    description: "Pump hits halfway through and ruins attempts.",
     votes: 16,
-    author: 'Natalie Brooks',
+    author: "Natalie Brooks",
   },
   {
     id: 15,
-    title: 'Best stretches post-session?',
-    description: 'What actually helps with recovery?',
+    title: "Best stretches post-session?",
+    description: "What actually helps with recovery?",
     votes: 6,
-    author: 'Marcus Hill',
+    author: "Marcus Hill",
   },
   {
     id: 16,
-    title: 'Recording attempts on video: helpful or not?',
-    description: 'Not sure if it helps or just adds pressure.',
+    title: "Recording attempts on video: helpful or not?",
+    description: "Not sure if it helps or just adds pressure.",
     votes: 13,
-    author: 'Isabelle Laurent',
+    author: "Isabelle Laurent",
   },
   {
     id: 17,
-    title: 'How do you approach limit bouldering?',
-    description: 'More attempts or more rest between goes?',
+    title: "How do you approach limit bouldering?",
+    description: "More attempts or more rest between goes?",
     votes: 21,
-    author: 'Kevin Zhang',
+    author: "Kevin Zhang",
   },
   {
     id: 18,
-    title: 'Skin care routines that actually work',
-    description: 'Flappers are killing my sessions lately.',
+    title: "Skin care routines that actually work",
+    description: "Flappers are killing my sessions lately.",
     votes: 17,
-    author: 'Olivia Reed',
+    author: "Olivia Reed",
   },
   {
     id: 19,
-    title: 'Music in headphones while climbing?',
-    description: 'Focus boost or safety issue?',
+    title: "Music in headphones while climbing?",
+    description: "Focus boost or safety issue?",
     votes: 4,
-    author: 'Ethan Walker',
+    author: "Ethan Walker",
   },
   {
     id: 20,
-    title: 'What’s your proudest send?',
-    description: 'Grade doesn’t matter — just curious.',
+    title: "What’s your proudest send?",
+    description: "Grade doesn’t matter — just curious.",
     votes: 29,
-    author: 'Sarah Klein',
+    author: "Sarah Klein",
   },
 ];
 ```
@@ -440,7 +460,7 @@ Because data only flows from parent to child, we cannot call a function that upd
 - In your script block, define an emit using the following block.
 
   ```js
-  const emit = defineEmits(['upvote']);
+  const emit = defineEmits(["upvote"]);
   ```
 
 - And from this you can modify your vote element:
@@ -487,7 +507,7 @@ Right now, posts are displayed in the order they appear in the posts array. Howe
 - Import `computed` in `App.vue`:
 
   ```js
-  import { ref, computed } from 'vue';
+  import {ref, computed} from "vue";
   ```
 
 - Create the new computed property, `sortedPosts`. We use the spread operator (`[...]`) to make a copy of the array so we don’t mutate the original `posts` state.
@@ -525,7 +545,8 @@ Let's add two style changes to the posts:
     :class="{
     milestone: post.votes >= 50,
     low: post.votes < 5
-  }">
+  }"
+  >
     ... rest of post...
   </article>
   ```
