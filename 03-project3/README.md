@@ -65,7 +65,7 @@ Create a component called `ReminderItem`. Use the following template:
 ```html
 <template>
   <article>
-    <p>{{ reminder.text }}</p>
+    <p>Buy milk.</p>
     <footer>
       <button>⬆️</button>
       <button>⬇️</button>
