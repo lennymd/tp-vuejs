@@ -10,7 +10,7 @@ You can find a video of me doing this assignment here: **✨TBD✨**
 
 ## Part 1 - Project Setup
 
-Create a new vue project named: `upvote`. Don't select any of the additional or experimental features, but select `Yes` when asked "Skip all example code and start with a blank Vue project?"
+Create a new Vue project named: `upvote`. Don't select any of the additional or experimental features, but select `Yes` when asked "Skip all example code and start with a blank Vue project?"
 
 ```bash
 npm create vue@latest
