@@ -28,7 +28,7 @@ Then add the following CSS to your project:
 
 ```css
 /* Add a Google Font called Inter */
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 /* Reset some general styling for the page */
 * {
@@ -39,7 +39,7 @@ Then add the following CSS to your project:
 
 /* Use the Inter font */
 body {
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 20px;
 }
 
@@ -118,7 +118,7 @@ const props = defineProps({
   reminder: Object,
 });
 
-const emit = defineEmits(["increase", "decrease", "remove"]);
+const emit = defineEmits(['increase', 'decrease', 'remove']);
 ```
 
 Then update the template to show the `reminder.text`. We also add the click event using `v-on` or it's shortcut `@` as well as the emit function.
@@ -138,11 +138,11 @@ Test this new version of the component by updating our `App` to include a sample
 
 ```vue
 <script setup>
-import ReminderItem from "./components/ReminderItem.vue";
+import ReminderItem from './components/ReminderItem.vue';
 
 const r = {
   id: 1,
-  text: "Buy milk",
+  text: 'Buy milk',
   priority: 0,
 };
 </script>
@@ -162,24 +162,24 @@ Once you have tested your new component, delete the constant r as well as the ca
 In this part we will focus on loading and sorting a set list of reminders. Create a reactive array of reminders:
 
 ```js
-import {ref} from "vue";
+import { ref } from 'vue';
 
 const reminders = ref([
-  {id: 1, text: "Buy milk", priority: 2},
-  {id: 2, text: "Call sister", priority: 1},
-  {id: 3, text: "Make cheesecake", priority: 3},
+  { id: 1, text: 'Buy milk', priority: 2 },
+  { id: 2, text: 'Call sister', priority: 1 },
+  { id: 3, text: 'Make cheesecake', priority: 3 },
 ]);
 ```
 
 We can also create a sorted version of these reminders using the priority. Import the `computed` function from Vue and created a computed property called `sortedReminders`. Your script block will look something like this:
 
 ```js
-import {ref, computed} from "vue";
+import { ref, computed } from 'vue';
 
 const reminders = ref([
-  {id: 1, text: "Buy milk", priority: 2},
-  {id: 2, text: "Call sister", priority: 1},
-  {id: 3, text: "Make cheesecake", priority: 3},
+  { id: 1, text: 'Buy milk', priority: 2 },
+  { id: 2, text: 'Call sister', priority: 1 },
+  { id: 3, text: 'Make cheesecake', priority: 3 },
 ]);
 
 const sortedReminders = computed(() => [...reminders.value].sort((a, b) => b.priority - a.priority));
@@ -221,8 +221,7 @@ Then we update the template to execute these methods if the App.vue receives the
   :key="reminder.id"
   :reminder="reminder"
   @increase="increasePriority(reminder.id)"
-  @decrease="decreasePriority(reminder.id)"
-/>
+  @decrease="decreasePriority(reminder.id)" />
 ```
 
 **Q4**: _Look at the method `decreasePriority`. It can currently go into negative numbers. Does a negative priority make sense? Update the method so that the value of priority cannot go below 0._
@@ -235,13 +234,13 @@ Your App.vue file should look like this now:
 
 ```vue
 <script setup>
-import {computed, ref} from "vue";
-import ReminderItem from "./components/ReminderItem.vue";
+import { computed, ref } from 'vue';
+import ReminderItem from './components/ReminderItem.vue';
 
 const reminders = ref([
-  {id: 1, text: "Buy milk", priority: 2},
-  {id: 2, text: "Call sister", priority: 1},
-  {id: 3, text: "Make cheesecake", priority: 3},
+  { id: 1, text: 'Buy milk', priority: 2 },
+  { id: 2, text: 'Call sister', priority: 1 },
+  { id: 3, text: 'Make cheesecake', priority: 3 },
 ]);
 
 const sortedReminders = computed(() => [...reminders.value].sort((a, b) => b.priority - a.priority));
@@ -269,8 +268,7 @@ function removeReminder(id) {
     :reminder="reminder"
     @increase="increasePriority(reminder.id)"
     @decrease="decreasePriority(reminder.id)"
-    @remove="removeReminder(reminder.id)"
-  />
+    @remove="removeReminder(reminder.id)" />
 </template>
 
 <style scoped></style>
@@ -320,19 +318,19 @@ If you render this component as-is in the App, you will see a text bar along wit
 Now we start adding the functionality to make it work. In your `ReminderForm` component, update the script block:
 
 ```js
-import {ref} from "vue";
+import { ref } from 'vue';
 
 // we use this reactive variable to keep track of the reminder we want to add.
-const newText = ref("");
+const newText = ref('');
 
 // communicate with App.vue using an emit message
-const emit = defineEmits(["add"]);
+const emit = defineEmits(['add']);
 
 // Function to handle form submission
 function submitReminder() {
-  if (newText.value.trim() === "") return; // prevent empty reminders
-  emit("add", newText.value); // send the new reminder text to parent
-  newText.value = ""; // clear the input
+  if (newText.value.trim() === '') return; // prevent empty reminders
+  emit('add', newText.value); // send the new reminder text to parent
+  newText.value = ''; // clear the input
 }
 ```
 
@@ -453,8 +451,7 @@ Now that we have these two values, we can pass them to the `ReminderItem` compon
   :highest-priority="highestPriority"
   @increase="increasePriority(reminder.id)"
   @decrease="decreasePriority(reminder.id)"
-  @remove="removeReminder(reminder.id)"
-/>
+  @remove="removeReminder(reminder.id)" />
 ```
 
 While we are sending this information to `ReminderItem`, the component is not yet able to use it. We need to update the component.
@@ -476,8 +473,7 @@ Then we update the template to conditionally add new classes.
   :class="{
       'latest-reminder': reminder.id === latestId,
       'top-priority': reminder.priority === highestPriority,
-    }"
->
+    }">
   <p>{{ reminder.text }}</p>
   <footer>
     <button @click="emit('increase')">⬆️</button>
@@ -523,7 +519,7 @@ const reminders = ref([]);
 Then we check if we have any already saved reminders in `localStorage`. Add this right after reminders and before any of the methods.
 
 ```js
-const saved = localStorage.getItem("reminders");
+const saved = localStorage.getItem('reminders');
 if (saved) {
   reminders.value = JSON.parse(saved);
 }
@@ -532,14 +528,14 @@ if (saved) {
 Finally, we import `watch()` from Vue, and then use it to save any changes to reminders to localStorage.
 
 ```js
-import {computed, ref, watch} from "vue";
+import { computed, ref, watch } from 'vue';
 
 watch(
   reminders,
   newReminders => {
-    localStorage.setItem("reminders", JSON.stringify(newReminders));
+    localStorage.setItem('reminders', JSON.stringify(newReminders));
   },
-  {deep: true}, // ensures changes inside objects like priority are detected
+  { deep: true }, // ensures changes inside objects like priority are detected
 );
 ```
 
@@ -547,4 +543,4 @@ Since Vue works reactively, nothing else needs to change. Save your file and try
 
 ## Part 7 - One last fix
 
-In this app, it's currently possible to create a reminder that has an `id` of some number, delete it, and then create a new reminder with the same `id` number. Update how the app creates new IDs and how it keeps track of the latest ID so that this is no longer possible. You may have to create a new variable to keep track of the latest ID and use new or different props to make sure conditionally styling works.
+In this app, it's currently possible to create a reminder that has an `id` of some number, delete it, and then create a new reminder with the same `id` number. **Update how the app creates new IDs and how it keeps track of the latest ID so that this is no longer possible. You may have to create a new variable to keep track of the latest ID and use new or different props to make sure conditionally styling works.**
