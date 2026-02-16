@@ -5,4 +5,5 @@ This repository contains the work for the _travaux pratiques_ for a small course
 ## Assignments
 
 - [Personal Page](./01-personal-page/README.md)
-- [Upvote V2](./02-upvote/README.md)
+- [Upvote](./02-upvote/README.md)
+- [Reminder Manager](./03-reminder-manager/README.md)
