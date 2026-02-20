@@ -149,7 +149,9 @@ We have one post, but we may want more. How would you add multiple posts? Try ad
 Then complete the following:
 
 **Q1:** _Describe what you see when you copy the Post component several times._
+
 **Q2:** _What are the different things we want to track with our post? Look at the Post component now and see what we can change for each post._
+
 **Q3:** _How could you change the data so we have three different posts?_
 
 Now make two new components `Post2` and `Post3`. They should have all the same script, template, and style code as `Post`, but change the content inside each template so you have three different posts. Then render `Post`, `Post2`, and `Post3` in your `App.vue`. Don't forget to import the components.
@@ -665,7 +667,7 @@ Update the template to loop over `sortedPosts` instead of `posts`.
 <Post v-for="post in sortedPosts" :key="post.id" :post="post" @upvote="upvotePost(post.id)" />
 ```
 
--Save and test the app. When you upvote a post, it should now move higher on the page automatically.
+Save and test the app. When you upvote a post, it should now move higher on the page automatically.
 
 **Q9**: _Why do we use a computed property here instead of sorting the posts directly inside the template or inside the upvote function? What could happen if we directly sorted the data and something went wrong?_
 
