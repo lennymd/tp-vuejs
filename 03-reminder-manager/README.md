@@ -4,7 +4,7 @@
 
 Build a reminder app where users can add, reorder (based on priority), and delete reminders.
 
-You can find a video of me doing this assignment here: **✨TBD✨**
+You can find a video of me doing this assignment here: [https://youtu.be/rIlb-PXBjAI](https://youtu.be/rIlb-PXBjAI)
 
 ---
 
