@@ -4,7 +4,7 @@
 
 Create an app where we can vote on posts. The more votes a post has, the higher the post will be on the page. This project is based on one of the exercises in [Fullstack Vue](https://www.newline.co/vue).
 
-You can find a video of me doing this assignment here: **✨TBD✨**
+You can find a video of me doing this assignment here: [https://youtu.be/YGzyu276aJk](https://youtu.be/YGzyu276aJk)
 
 ---
 
